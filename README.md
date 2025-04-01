@@ -120,4 +120,4 @@ This is a simple web-based walkie-talkie application built with Python Flask and
 
 ## 许可证 (License)
 
-[MIT](LICENSE) (如果选择 MIT 许可证，请在项目中添加一个包含 MIT 许可证文本的 `LICENSE` 文件)
+[Apache-2.0 license](LICENSE)
