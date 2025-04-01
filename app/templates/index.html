@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页对讲机</title>
+    <!-- 引入样式表 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 状态显示区域 -->
+        <div id="status-area" class="status-section">
+            <h2>状态</h2>
+            <p id="connection-status">连接状态: <span class="status-text status-disconnected">未连接</span></p>
+            <p id="channel-display">当前频道: <span class="status-text">无</span></p>
+            <p id="speaker-status" style="display: none;">正在说话: <span class="status-text speaker-name">无</span></p>
+            <!-- 可以添加用户列表显示区域 (如果后面实现) -->
+            <!-- <p>在线用户: <span id="user-count">0</span></p> -->
+            <!-- <ul id="user-list"></ul> -->
+        </div>
+
+        <!-- 控制区域 -->
+        <div id="controls-area" class="controls-section">
+            <h2>加入频道</h2>
+            <div class="input-group">
+                <input type="text" id="channel-input" placeholder="输入 6 位数字频道号" maxlength="6" inputmode="numeric" pattern="\d{6}">
+                <button id="join-button">加入/切换</button>
+            </div>
+            <p id="error-message" class="error-text" style="display: none;"></p> <!-- 用于显示加入错误 -->
+        </div>
+
+        <!-- 对讲区域 -->
+        <div id="talk-area" class="talk-section">
+            <h2>对讲</h2>
+            <button id="talk-button" disabled>开始说话</button>
+        </div>
+
+        <!-- 其他操作 -->
+        <div id="actions-area" class="actions-section">
+             <h2>操作</h2>
+            <div class="button-group"> <!-- (可选) 用 div 包裹按钮组，方便布局 -->
+                <button id="mute-button">静音</button>
+                <!-- 新增麦克风开关按钮 -->
+                <button id="mic-toggle-button">关闭麦克风</button>
+             </div>
+         </div>
+
+    </div> <!-- /container -->
+
+    <!-- JavaScript 文件 -->
+    <!-- 1. Socket.IO 客户端库 -->
+     <script src="{{ url_for('static', filename='js/lib/socket.io.min.js') }}"></script>
+
+    <!-- 2. 自定义模块化 JavaScript 代码 -->
+    <script src="{{ url_for('static', filename='js/ui_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/audio_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/socket_handler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script> <!-- 主入口最后加载 -->
+
+</body>
+</html>

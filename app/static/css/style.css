@@ -1,0 +1,207 @@
+/* app/static/css/style.css */
+
+/* --- 基本布局和重置 --- */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    margin-bottom: 1em;
+}
+
+/* --- 分区样式 --- */
+.status-section,
+.controls-section,
+.talk-section,
+.actions-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.actions-section {
+    border-bottom: none; /* 最后一个区域不需要下边框 */
+}
+
+/* --- 状态显示样式 --- */
+.status-text {
+    font-weight: bold;
+}
+
+/* 连接状态颜色 */
+.status-connected {
+    color: #28a745; /* 绿色 */
+}
+
+.status-disconnected {
+    color: #dc3545; /* 红色 */
+}
+
+.status-connecting {
+    color: #ffc107; /* 黄色 */
+}
+
+.status-error {
+    color: #dc3545; /* 红色 (同断开) */
+    font-style: italic;
+}
+
+/* 说话者状态 (可选自定义样式) */
+.speaker-name {
+    /* 可以给说话者名字加点样式，比如不同的颜色 */
+    color: #007bff;
+}
+
+/* --- 控件和按钮样式 --- */
+.input-group {
+    display: flex; /* 让输入框和按钮在一行 */
+    margin-bottom: 10px;
+}
+
+#channel-input {
+    flex-grow: 1; /* 输入框占据剩余空间 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px; /* 左侧圆角 */
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: #007bff;
+    color: white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#join-button {
+    border-radius: 0 4px 4px 0; /* 右侧圆角 */
+}
+
+#talk-button {
+    display: block; /* 让按钮独占一行或根据需要调整 */
+    width: 80%; /* 或固定宽度 */
+    max-width: 300px;
+    margin: 10px auto; /* 居中 */
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #28a745; /* 绿色代表可以说话 */
+    border-radius: 50px; /* 圆角 */
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+#talk-button:disabled {
+    background-color: #aaa;
+}
+
+/* “按下说话”按钮激活状态样式 */
+#talk-button.active {
+    background-color: #dc3545; /* 红色表示正在说话 */
+    color: white;
+    transform: scale(0.95); /* 轻微缩小效果 */
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.5); /* 红色光晕 */
+}
+
+#mute-button {
+     background-color: #6c757d; /* 灰色 */
+}
+
+/* 静音按钮激活状态样式 */
+#mute-button.muted {
+    background-color: #ffc107; /* 黄色表示已静音 */
+    color: #333;
+}
+
+/* --- 错误消息样式 --- */
+.error-text {
+    color: #dc3545; /* 红色 */
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* --- 响应式调整 (可选) --- */
+@media (max-width: 480px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    #talk-button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    .input-group {
+        flex-direction: column; /* 在小屏幕上垂直排列 */
+    }
+    #channel-input {
+        border-radius: 4px; /* 恢复四角圆角 */
+        margin-bottom: 5px;
+    }
+    #join-button {
+         border-radius: 4px; /* 恢复四角圆角 */
+         width: 100%; /* 占满宽度 */
+    }
+}
+
+#actions-area .button-group {
+    display: flex;
+    gap: 10px; /* 按钮之间的间距 */
+    flex-wrap: wrap; /* 如果屏幕太窄则换行 */
+}
+
+#mute-button {
+     background-color: #6c757d; /* 灰色 */
+}
+
+/* 静音按钮激活状态样式 */
+#mute-button.muted {
+    background-color: #ffc107; /* 黄色表示已静音 */
+    color: #333;
+}
+
+/* 新增: 麦克风开关按钮样式 */
+#mic-toggle-button {
+    background-color: #17a2b8; /* 初始颜色 (例如青色) */
+}
+
+/* 新增: 麦克风开关按钮禁用状态样式 */
+#mic-toggle-button.mic-disabled {
+    background-color: #dc3545; /* 红色表示麦克风已关闭 */
+    /* 可以考虑加个图标或改变边框等 */
+
+
+
+/* --- 默认隐藏对讲和操作区域 --- */
+#talk-area,
+#actions-area {
+    display: none; /* 默认不显示 */
+}
